@@ -1,0 +1,14 @@
+services:
+  bundle:
+    container_name: mayflower-test
+    build:
+      context: .
+      no_cache: true
+    ports:
+      - "8080:8080"
+  webhook:
+    container_name: webhook
+    image: webhooksite/cli
+    env_file:
+      - ./webhook.env
+    entrypoint: "whcli forward"
